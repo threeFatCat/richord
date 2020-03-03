@@ -1,23 +1,44 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  return runApp(Home());
-}
+void main() => runApp(App());
 
-class Home extends StatelessWidget {
+class App extends StatelessWidget {
+  final appTitle = 'RiChord';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'RiChord',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('RiChord'),
-          backgroundColor: Color(0xFF1de9b6),
-        ),
-        body: Center(
-          child: Text('Hello World'),
-        ),
+      title: appTitle,
+      home: Home(title: appTitle),
+    );
+  }
+}
+
+class Home extends StatelessWidget {
+  final String title;
+  Home({Key key, this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    print(key);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+        backgroundColor: Color(0xFF1de9b6),
+      ),
+      body: Center(
+        child: Content(),
       ),
     );
   }
+}
+
+class Content extends StatefulWidget {
+  @override
+  ContentState createState() => ContentState();
+}
+
+class ContentState extends State<Content> {
+  @override
+  Widget build(BuildContext context) => Text('State Text');
 }

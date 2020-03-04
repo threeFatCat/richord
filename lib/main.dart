@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'theme/theme.dart';
+import 'components/contents.dart';
 
 void main() => runApp(App());
 
 class App extends StatelessWidget {
-  final appTitle = 'RiChord';
+  final appTitle = 'Lorem';
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: appTheme(),
       title: appTitle,
       home: Home(title: appTitle),
     );
@@ -25,10 +28,9 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   String myTitle;
 
-  void updateContent(title) {
-    setState(() {
-      myTitle = title;
-    });
+  void displayContent(title) {
+    setState(() => myTitle = title);
+    Navigator.pop(context);
   }
 
   @override
@@ -36,31 +38,33 @@ class HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: Color(0xFF1de9b6),
       ),
-      body: Center(
-        child: Text(myTitle ?? 'test'),
-      ),
+      body: Contents(contentTitle: myTitle),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              child: Text('header'),
-              decoration: BoxDecoration(color: Color(0xFF1de9b6)),
+            SizedBox(
+              height: 90.0,
+              child: DrawerHeader(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  child: Text('header'),
+                ),
+                decoration:
+                    BoxDecoration(color: Theme.of(context).primaryColor),
+              ),
             ),
             ListTile(
               title: Text('Item 1'),
               onTap: () {
-                Navigator.pop(context);
-                updateContent('hello');
+                displayContent('hello');
               },
             ),
             ListTile(
               title: Text('Item 2'),
               onTap: () {
-                Navigator.pop(context);
-                updateContent('world');
+                displayContent('world');
               },
             ),
           ],

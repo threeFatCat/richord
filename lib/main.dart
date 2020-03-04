@@ -14,31 +14,58 @@ class App extends StatelessWidget {
   }
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   final String title;
   Home({Key key, this.title}) : super(key: key);
 
   @override
+  HomeState createState() => HomeState();
+}
+
+class HomeState extends State<Home> {
+  String myTitle;
+
+  void updateContent(title) {
+    setState(() {
+      myTitle = title;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    print(key);
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(widget.title),
         backgroundColor: Color(0xFF1de9b6),
       ),
       body: Center(
-        child: Content(),
+        child: Text(myTitle ?? 'test'),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('header'),
+              decoration: BoxDecoration(color: Color(0xFF1de9b6)),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                Navigator.pop(context);
+                updateContent('hello');
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                Navigator.pop(context);
+                updateContent('world');
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
-}
-
-class Content extends StatefulWidget {
-  @override
-  ContentState createState() => ContentState();
-}
-
-class ContentState extends State<Content> {
-  @override
-  Widget build(BuildContext context) => Text('State Text');
 }

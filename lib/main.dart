@@ -45,7 +45,7 @@ class HomeState extends State<Home> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             SizedBox(
-              height: 90.0,
+              height: 89.0,
               child: DrawerHeader(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5.0),

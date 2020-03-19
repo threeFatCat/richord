@@ -37,7 +37,7 @@ class ContentsState extends State<Contents> {
                     margin: EdgeInsets.only(bottom: 10.0),
                     child: Text(
                         'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem beatae accusantium a maxime totam natus illo dolorem, eligendi praesentium odit, deserunt exercitationem ab molestias dignissimos tenetur. Iste laudantium sunt explicabo.'),
-                  ),
+                  )
                 ),
               ],
             ),
